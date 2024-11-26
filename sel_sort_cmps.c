@@ -1,4 +1,5 @@
 #include "sel_sort_declars.h"
+#include "sel_sort_cmps.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
