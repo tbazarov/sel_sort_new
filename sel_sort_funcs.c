@@ -1,4 +1,5 @@
 #include "sel_sort_declars.h"
+#include "sel_sort_cmps.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -19,15 +20,22 @@ void selection_sort(void *array, int n, size_t size, int (*cmp)(void*, void*))
         }
         if (min_idx != i) 
         {
-            // Swap
-            void *temp = malloc(size);
-            memcpy(temp, (char *)array + i * size, size);
-            memcpy((char *)array + i * size, (char *)array + min_idx * size, size);
-            memcpy((char *)array + min_idx * size, temp, size);
-            free(temp);
+            swap((char *)array + i * size, (char *)array + min_idx * size, size);
         }
     }
 }
 
+
+void swap(void *a, void *b, size_t size) {
+    void *temp = malloc(size);
+    if (temp == NULL) {
+        perror("Ошибка выделения памяти");
+        exit(EXIT_FAILURE);
+    }
+    memcpy(temp, a, size);
+    memcpy(a, b, size);
+    memcpy(b, temp, size);
+    free(temp);
+}
 
 
